@@ -1,4 +1,5 @@
 import subprocess
+import os
 
 
 def pdfmin(input_filename: str, compression_rate: str = "m"):
@@ -14,14 +15,10 @@ def pdfmin(input_filename: str, compression_rate: str = "m"):
             "-dNOPAUSE",
             "-dQUIET",
             "-dBATCH",
-            f"-sOutputFile={input_filename.rstrip('.pdf')}.min.pdf",
-            f"~/Home/pdfmin_py/{input_filename}",
+            f"-sOutputFile={os.getcwd()}/{input_filename.rstrip('.pdf')}.min.pdf",
+            f"{os.getcwd()}/{input_filename}",
         ]
     )
 
     # exec
     subprocess.run(exec_str, shell=True)
-
-
-if __name__ == "__main__":
-    pdfmin()
